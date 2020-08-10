@@ -1,4 +1,9 @@
+import 'package:bmi_calculator/reuseable_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'gender_content_card.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -22,10 +27,22 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: ReusableCard(mColor: darkColor),
+                  child: ReusableCard(
+                    mColor: darkColor,
+                    cardChild: GenderCardWidget(
+                      genderIcon: FontAwesomeIcons.mars,
+                      gender: 'MALE',
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(mColor: darkColor),
+                  child: ReusableCard(
+                    mColor: darkColor,
+                    cardChild: GenderCardWidget(
+                      genderIcon: FontAwesomeIcons.venus,
+                      gender: 'FEMALE',
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -58,23 +75,6 @@ class _InputPageState extends State<InputPage> {
             height: bottomContainerHeight,
           ),
         ]),
-      ),
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  final Color mColor;
-
-  ReusableCard({@required this.mColor});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: mColor,
-        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
