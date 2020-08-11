@@ -201,7 +201,7 @@ class RoundedIconButton extends StatelessWidget {
         height: 56.0,
       ),
       fillColor: Color(0xFF4C4F5E),
-      onPressed: onPressed,
+      onPressed: this.onPressed,
     );
   }
 }
