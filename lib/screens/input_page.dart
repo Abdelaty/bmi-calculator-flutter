@@ -128,6 +128,7 @@ class _InputPageState extends State<InputPage> {
                 child: ReusableCard(
                   mColor: kActiveCardColor,
                   cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         'WEIGHT',
@@ -163,6 +164,7 @@ class _InputPageState extends State<InputPage> {
                 child: ReusableCard(
                   mColor: kActiveCardColor,
                   cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         'AGE',
