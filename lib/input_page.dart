@@ -14,6 +14,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 60;
+  int age = 12;
   Gender selectedGender;
 
   @override
@@ -136,15 +137,18 @@ class _InputPageState extends State<InputPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               RoundedIconButton(
-                                icon: FontAwesomeIcons.minus,
-                                onPressed: decreaseWeight(),
-                              ),
+                                  icon: FontAwesomeIcons.minus,
+                                  onPressed: () {
+                                    decreaseWeight();
+                                  }),
                               SizedBox(
                                 width: 10.0,
                               ),
                               RoundedIconButton(
                                   icon: FontAwesomeIcons.plus,
-                                  onPressed: increaseWeight()),
+                                  onPressed: () {
+                                    increaseWeight();
+                                  }),
                             ],
                           )
                         ],
@@ -152,7 +156,39 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(mColor: kActiveCardColor),
+                    child: ReusableCard(
+                      mColor: kActiveCardColor,
+                      cardChild: Column(
+                        children: <Widget>[
+                          Text(
+                            'AGE',
+                            style: kTextStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kBoldTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundedIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPressed: () {
+                                    decreaseAge();
+                                  }),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundedIconButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPressed: () {
+                                    increaseAge();
+                                  }),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -169,13 +205,25 @@ class _InputPageState extends State<InputPage> {
 
   decreaseWeight() {
     setState(() {
-      weight--;
+      weight > 60 ? weight-- : print('Weight out of range');
+    });
+  }
+
+  decreaseAge() {
+    setState(() {
+      age > 10 ? age-- : print('Age out of range');
+    });
+  }
+
+  increaseAge() {
+    setState(() {
+      age <= 99 ? age++ : print('Age out of range');
     });
   }
 
   increaseWeight() {
     setState(() {
-      weight++;
+      weight < 250 ? weight++ : print('Weight out of range');
     });
   }
 }
@@ -186,7 +234,7 @@ enum Gender {
 }
 
 class RoundedIconButton extends StatelessWidget {
-  RoundedIconButton({this.icon, this.onPressed});
+  RoundedIconButton({@required this.icon, @required this.onPressed});
 
   final Function onPressed;
   final IconData icon;
@@ -201,7 +249,7 @@ class RoundedIconButton extends StatelessWidget {
         height: 56.0,
       ),
       fillColor: Color(0xFF4C4F5E),
-      onPressed: this.onPressed,
+      onPressed: onPressed,
     );
   }
 }
